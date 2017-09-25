@@ -2,21 +2,23 @@
 ;  Input key presses from the keyboard until Enter is pressed.
 ; --------------------------------------------------------------
 	CLO		; Close unwanted windows
-	MOV DL, 60	;
+	MOV DL,60	;
+	MOV CL,BF	;
 big:
 	IN 00		;
 	MOV [DL],AL	;
 	INC DL		;
+	INC CL		;
 	CMP AL, 0D	;
 	JNZ big		;
-	MOV CL,80	;
 	DEC DL;
+
 small:
 	MOV BL,[DL]	;
 	MOV [CL],BL	;
-	INC CL		;
+	DEC CL		;
 	DEC DL		;
-	CMP DL,	60	;
+	CMP DL,	5F	;
 	JNZ small	;
 
 END
